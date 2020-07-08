@@ -124,8 +124,8 @@ file mkdir $areaPath
 foreach i $mapRooms {
     array set tmp $i
 
-    # set fn [coordToFileName $tmp(y) $tmp(x)]
-    # set fp [open "${areaPath}/${roomPrefix}${fn}.c" w+]
+    set fn [coordToFileName $tmp(y) $tmp(x)]
+    set fp [open "${areaPath}/${roomPrefix}${fn}.c" w+]
 
     set exits [exitsByIndex $tmp(id) $mapPaths]
     set exitString ""
@@ -133,7 +133,7 @@ foreach i $mapRooms {
         set coord [exitToCoord $tmp(x) $tmp(y) $j]
         set exitString "$exitString\"[exitToName $j]\":\"${roomPrefix}[coordToFileName [lindex $coord 0] [lindex $coord 1]]\",\n"
     }
-    puts [string map [list //_EXITS $exitString] $templateData]
+    puts $fp [string map [list //_EXITS $exitString] $templateData]
 
-    # close $fp
+    close $fp
 }
