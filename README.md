@@ -8,11 +8,11 @@ into area dir based on a given template.
 Requirements
 ------------
 
-To use this script you'll need tcl and tcllib (for ::json)
+To use this script you'll need tcl and [tcllib](http://www.tcl.tk/software/tcllib/) (for ::json)
 
 Ms windows users will probably find
  [ActiveTCL](https://www.activestate.com/products/tcl/)
-(all included) or IronTCL with tcllib as a suitable option to run this script.
+(all included) or [irontcl](https://www.irontcl.com/) with [tcllib](http://www.tcl.tk/software/tcllib/) as a suitable option to run this script.
 
 Usage
 -----
