@@ -31,7 +31,9 @@ Screenshots
 -----------
 
 MM2 map:
+
 ![Mudmap2](mm.png)
 
 Dir structure:
+
 ![LPCareadir](lpc.png)
