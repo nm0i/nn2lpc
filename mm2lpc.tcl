@@ -37,7 +37,7 @@ proc exitToCoord {x y e} {
             lappend coor [expr {$y}]
         }
         w {
-            lappend coor [expr {$x +1 }]
+            lappend coor [expr {$x -1 }]
             lappend coor [expr {$y}]
         }
         nw {
@@ -45,7 +45,7 @@ proc exitToCoord {x y e} {
             lappend coor [expr {$y + 1}]
         }
         ne {
-            lappend coor [expr {$x - 1}]
+            lappend coor [expr {$x + 1}]
             lappend coor [expr {$y + 1}]
         }
         sw {
@@ -53,7 +53,7 @@ proc exitToCoord {x y e} {
             lappend coor [expr {$y - 1}]
         }
         se {
-            lappend coor [expr {$x - 1}]
+            lappend coor [expr {$x + 1}]
             lappend coor [expr {$y - 1}]
         }
     }
@@ -124,15 +124,19 @@ file mkdir $areaPath
 foreach i $mapRooms {
     array set tmp $i
 
-    set fn [coordToFileName $tmp(y) $tmp(x)]
+    set fn [coordToFileName $tmp(x) $tmp(y)]
     set fp [open "${areaPath}/${roomPrefix}${fn}.c" w+]
 
     set exits [exitsByIndex $tmp(id) $mapPaths]
     set exitString ""
+
+    puts "id:$tmp(id):${areaPath}/${roomPrefix}${fn}.c"
+
     foreach j $exits {
         set coord [exitToCoord $tmp(x) $tmp(y) $j]
         set exitString "$exitString\"[exitToName $j]\":\"${roomPrefix}[coordToFileName [lindex $coord 0] [lindex $coord 1]]\",\n"
     }
+
     puts $fp [string map [list //_EXITS $exitString] $templateData]
 
     close $fp
